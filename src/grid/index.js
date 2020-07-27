@@ -45,10 +45,7 @@ class Grid {
         div.style.width = "100%";
         div.style.height = "100%";
         if (item.row !== 1 || item.col !== 1) {
-          // grid-column-start: 1;
-          // grid-column-end: 3;
-          // grid-row-start: 2;
-          // grid-row-end: 4;
+          // TODO:添加拆分按钮
           div.style.gridColumnStart = item.left;
           div.style.gridColumnEnd = item.left + item.col;
           div.style.gridRowStart = item.top;
@@ -78,7 +75,8 @@ class Grid {
         yMin: Math.min(this._areaArray[index].yMin, area.yMin),
         yMax: Math.max(this._areaArray[index].yMax, area.yMax)
       }
-      this._areaArray.splice(index, 1, obj)
+      this._areaArray.splice(index, 1)
+      this._areaArray.push(obj)
     } else {
       obj = area
       this._areaArray.push(obj)
@@ -131,7 +129,6 @@ class Grid {
     }
   }
 
-  // TODO:容器的事件
   // 合并单元格
   merge() {
     // 鼠标按下事件
@@ -191,6 +188,12 @@ class Grid {
       }
 
     })
+  }
+
+  // TODO:拆分方法
+  // 拆分单元格
+  split() {
+
   }
 
 }

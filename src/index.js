@@ -23,3 +23,4 @@ class MergeSplitBox {
 let msb = new MergeSplitBox('#box', 3, 6,)
 console.log(msb.getRes())
 
+
