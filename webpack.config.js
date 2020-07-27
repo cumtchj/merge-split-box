@@ -22,7 +22,7 @@ module.exports = {
     hotOnly: true
   },
   resolve: {
-    extensions: [".js", '.less']
+    extensions: [".js", '.scss']
   },
   module: {
     rules: [
@@ -30,6 +30,20 @@ module.exports = {
         test: /\.js$/,
         loader: "babel-loader",
         exclude: "/node_modules/",
+      }, {
+        test: /\.scss$/,
+        use:[
+          'style-loader',
+          {
+            loader:"css-loader",
+            options: {
+              importLoaders:2,
+              modules:true
+            }
+          },
+          'sass-loader',
+          'postcss-loader'
+        ]
       }
     ]
   },
