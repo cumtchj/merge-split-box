@@ -1,6 +1,5 @@
-// import utils from 'utils'
-
-const utils = require("./utils")
+import utils from './utils/index'
+// const utils = require("./utils")
 
 class MergeSplitBox {
   constructor(row, col) {
@@ -8,5 +7,9 @@ class MergeSplitBox {
   }
 }
 
-module.exports = MergeSplitBox
+let msb = new MergeSplitBox(2, 2)
+console.log(msb.arr)
+
+
+// module.exports = MergeSplitBox
 // export default MergeSplitBox;

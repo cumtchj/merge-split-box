@@ -1,6 +1,6 @@
 class Utils {
   // 初始化生成数组
-  generateArray = (row, col) => {
+  generateArray(row, col) {
     let array = [];
     for (let r = 0; r < row; r++) {
       let arrIn = []
@@ -18,5 +18,5 @@ class Utils {
   }
 }
 
-module.exports = new Utils();
-// export default new Utils();
+// module.exports = new Utils();
+export default new Utils();
