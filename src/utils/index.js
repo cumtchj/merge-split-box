@@ -1,22 +1,19 @@
 class Utils {
   // 初始化生成数组
-  generateArray(row, col) {
-    let array = [];
-    for (let r = 0; r < row; r++) {
-      let arrIn = []
-      for (let c = 0; c < col; c++) {
-        arrIn[c] = {
-          left: c + 1,
-          top: r + 1,
-          row: 1,
-          col: 1
-        }
-      }
-      array[r] = arrIn;
-    }
-    return array;
+  makeRow(row, col) {
+    return Array.from({length: col}).map((item, index) => ({
+      left: index + 1,
+      top: row + 1,
+      row: 1,
+      col: 1
+    }))
+  }
+
+  makeArray(row, col) {
+    return Array.from({length: row}).map((item, index) => {
+      return this.makeRow(index, col)
+    })
   }
 }
 
-// module.exports = new Utils();
 export default new Utils();
