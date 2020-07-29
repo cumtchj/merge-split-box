@@ -2,7 +2,7 @@
   "name": "merge-split-box",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js",
     "build:example": "cross-env NODE_ENV=production PACK_TYPE=example webpack --config ./webpack.config.js",

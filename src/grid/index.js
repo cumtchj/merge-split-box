@@ -193,8 +193,9 @@ class Grid {
         this.destroyCover();
       }
       // 初始化cover
-      this._startX = e.clientX - this._container.offsetLeft;
-      this._startY = e.clientY - this._container.offsetTop;
+      let pos = this.getPos(e)
+      this._startX = pos[0];
+      this._startY = pos[1];
       console.log("start===", this._startX, this._startY)
       this._cover = new Cover(this._startX, this._startY, this._container)
       this._container.append(this._cover.cover)
@@ -203,8 +204,10 @@ class Grid {
     this._container.addEventListener('mousemove', e => {
       if (this._isSelect) {
         e.stopPropagation()
-        this._endX = e.clientX - this._container.offsetLeft;
-        this._endY = e.clientY - this._container.offsetTop;
+        let pos = this.getPos(e)
+        this._endX = pos[0];
+        this._endY = pos[1];
+
         // 超出范围
         if (this._endX <= 1 || this._endX >= (this._unitWidthNum * this._col) || this._endY <= 1 || this._endY >= (this._unitWidthNum * this._row)) {
           if (this._endX <= 1) {
@@ -233,8 +236,9 @@ class Grid {
       if (this._isSelect) {
         this._isSelect = false
         e.stopPropagation()
-        this._endX = e.clientX - this._container.offsetLeft;
-        this._endY = e.clientY - this._container.offsetTop;
+        let pos = this.getPos(e)
+        this._endX = pos[0];
+        this._endY = pos[1];
         if (this._endX <= 1 || this._endX >= (this._unitWidthNum * this._col) || this._endY <= 1 || this._endY >= (this._unitWidthNum * this._row)) {
           if (this._endX <= 1) {
             this._endX = 1
@@ -293,6 +297,16 @@ class Grid {
     // console.log(area)
     // console.log(this._areaArray)
     this._areaArray.splice(index, 1)
+  }
+
+  getPos(e) {
+    console.log(e)
+    console.log(this._container.getBoundingClientRect().left)
+    // let x = e.layerX;
+    let x = e.clientX - this._container.getBoundingClientRect().left;
+    // let y = e.layerY;
+    let y = e.clientY - this._container.getBoundingClientRect().top;
+    return [x, y]
   }
 }
 

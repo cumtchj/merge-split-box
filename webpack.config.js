@@ -58,7 +58,9 @@ module.exports = function () {
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: "[name].js",
-      libraryTarget: "umd"
+      library: "MergeSplitBox",
+      libraryTarget: "umd",
+      libraryExport: "default"
     },
     resolve: {
       extensions: [".js", '.scss']
