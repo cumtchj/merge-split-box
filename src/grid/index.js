@@ -160,7 +160,7 @@ class Grid {
       col: area.xMax - area.xMin + 1,
       disabled: false
     }
-    console.log("merge======", this._array)
+    // console.log("merge======", this._array)
 
     // console.log(this._array, this.res)
     this.createGrid();
@@ -300,8 +300,8 @@ class Grid {
   }
 
   getPos(e) {
-    console.log(e)
-    console.log(this._container.getBoundingClientRect().left)
+    // console.log(e)
+    // console.log(this._container.getBoundingClientRect().left)
     // let x = e.layerX;
     let x = e.clientX - this._container.getBoundingClientRect().left;
     // let y = e.layerY;
