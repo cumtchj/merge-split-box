@@ -1,5 +1,5 @@
-// import MergeSplitBox from "src";
-const MergeSplitBox =require('../src')
+// import MergeSplitBox from "../dist/index";
+const MergeSplitBox = require('../dist/index')
 
 let msb = new MergeSplitBox(2, 2)
 

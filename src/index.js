@@ -22,8 +22,7 @@ class MergeSplitBox {
 
 // window.MergeSplitBox = MergeSplitBox;
 
-let msb = new MergeSplitBox('#box', 6, 6,)
-console.log(msb.getRes())
+
 export default MergeSplitBox;
 
 

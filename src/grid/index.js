@@ -1,7 +1,8 @@
 import utils from '../utils/index'
 import tools from "../utils/tools";
 import Cover from "../cover/index"
-import styles from '../index.scss'
+// import styles from '../index.scss'
+import styles from '../style/index'
 
 class Grid {
   constructor(container, row, col, style) {
@@ -24,10 +25,14 @@ class Grid {
 
   build() {
     // 设置容器样式
+    // this._container.style = styles.container(this._row, this._col, this._unitWidth)
     this._container.style.width = `calc(${this._col} * ${this._unitWidth})`
     this._container.style.gridTemplateColumns = `repeat(${this._col}, ${this._unitWidth})`
     this._container.style.gridTemplateRows = `repeat(${this._row}, ${this._unitWidth})`
-    this._container.classList.add(styles.container)
+    this._container.style.position = 'relative'
+    this._container.style.border = '1px solid #999'
+    this._container.style.display = 'grid'
+    // this._container.classList.add(styles.container)
     // 生成items
     this.createGrid();
     // this.split();
@@ -43,12 +48,34 @@ class Grid {
         let div = document.createElement("div");
         // 设置item样式
         div.innerText = `${item.top}_${item.left}`;
-        div.classList.add(styles.item)
+        // div.classList.add(styles.item)
+        // div.style = styles.item();
+        // 设置每个格子样式
         div.style.width = "100%";
         div.style.height = "100%";
+        div.style.display = "flex";
+        div.style.flexDirection = "column";
+        div.style.justifyContent = "center";
+        div.style.alignItems = "center";
+        div.style.boxSizing = "border-box";
+        div.style.border = "1px dashed #eee";
+        div.style.userSelect = 'none'
+
+
         if (item.row !== 1 || item.col !== 1) {
           let button = document.createElement("input")
-          button.classList.add(styles.split_btn)
+          // button.classList.add(styles.split_btn)
+          // button.style = styles.splitBtn();
+          // 设置button样式
+          button.style.border = "none";
+          button.style.outline = "none";
+          button.style.background = "none";
+          button.style.cursor = "pointer";
+          button.style.borderRadius = "4px";
+          button.style.color = "white";
+          button.style.backgroundColor = 'cornflowerblue';
+          button.style.margin = '8px';
+          button.style.padding = "4px 14px";
           button.type = "button"
           button.value = "拆分"
           let id = `${item.left}_${item.top}_${item.row}_${item.col}`
@@ -57,10 +84,12 @@ class Grid {
           this._idList.push(id)
           button.setAttribute("data", id)
           div.append(button);
+          // 追加多个格子的样式
           div.style.gridColumnStart = item.left;
           div.style.gridColumnEnd = item.left + item.col;
           div.style.gridRowStart = item.top;
           div.style.gridRowEnd = item.top + item.row;
+          // div.style = Object.assign(styles.item(), styles.itemAdd(item.top, item.left, item.row, item.col))
         }
         this._container.append(div);
       }
@@ -206,6 +235,20 @@ class Grid {
         e.stopPropagation()
         this._endX = e.clientX - this._container.offsetLeft;
         this._endY = e.clientY - this._container.offsetTop;
+        if (this._endX <= 1 || this._endX >= (this._unitWidthNum * this._col) || this._endY <= 1 || this._endY >= (this._unitWidthNum * this._row)) {
+          if (this._endX <= 1) {
+            this._endX = 1
+          }
+          if (this._endX >= (this._unitWidthNum * this._col)) {
+            this._endX = (this._unitWidthNum * this._col)
+          }
+          if (this._endY <= 1) {
+            this._endY = 1
+          }
+          if (this._endY >= (this._unitWidthNum * this._row)) {
+            this._endY = (this._unitWidthNum * this._row)
+          }
+        }
         console.log('end==', this._endX, this._endY)
         this.destroyCover();
         if (Math.abs(this._endX - this._startX) > 0 || Math.abs(this._endY - this._startY)) {

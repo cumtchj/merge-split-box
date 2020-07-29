@@ -2,17 +2,19 @@
   "name": "merge-split-box",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js",
-    "start": " cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js"
+    "build:example": "cross-env NODE_ENV=production PACK_TYPE=example webpack --config ./webpack.config.js",
+    "start": " cross-env NODE_ENV=development PACK_TYPE=example webpack-dev-server --config ./webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/polyfill": "^7.10.4",
-    "@babel/runtime-corejs2": "^7.10.5",
+    "@babel/runtime-corejs3": "^7.10.5",
+    "@babel/runtime": "^7.10.5",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^4.3.0",
@@ -32,6 +34,13 @@
     "merge",
     "box"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cumtchj/merge-split-box.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cumtchj/merge-split-box/issues"
+  },
   "author": "cumtchj",
   "license": "ISC"
 }

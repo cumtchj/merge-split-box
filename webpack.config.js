@@ -5,6 +5,7 @@ const webpack = require('webpack')
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 const ENV = process.env.NODE_ENV
+const PACK_TYPE = process.env.PACK_TYPE
 console.log("ENV====", ENV)
 module.exports = function () {
   let config = {
@@ -18,6 +19,9 @@ module.exports = function () {
       new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ["dist"]}),
     ],
   }
+  // if (PACK_TYPE !== "example") {
+  //   config.plugins.shift()
+  // }
   if (ENV === "development") {
     config.devServer = {
       contentBase: "./dist",
@@ -30,30 +34,32 @@ module.exports = function () {
   }
 
   // if(ENV==="production"){
-  //   config.optimization.minimizer.push( new UglifyjsWebpackPlugin({
-  //     uglifyOptions: {
-  //       mangle: true,
-  //       output: {
-  //         comments: false,
-  //         beautify: false,
-  //       },
-  //     }
-  //   }))
+  //   config.optimization.minimizer.push( new UglifyjsWebpackPlugin(
+  //   {
+  //   uglifyOptions: {
+  //     mangle: true,
+  //     output: {
+  //       comments: false,
+  //       beautify: false,
+  //     },
+  //   }
+  // }
+  // ))
   // }
 
   return {
     mode: ENV,
     devtool: ENV === "production" ?
-      "cheap-module-source-map" :
+      false :
       "clean-module-eval-source-map",
     entry: {
-      index: './src/index'
+      index: PACK_TYPE === 'example' ? './src/example' : './src/index'
     },
     output: {
       path: path.resolve(__dirname, "dist"),
-      filename: "[name].js"
+      filename: "[name].js",
+      libraryTarget: "umd"
     },
-
     resolve: {
       extensions: [".js", '.scss']
     },
@@ -80,8 +86,6 @@ module.exports = function () {
         }
       ]
     },
-
-
     ...config
   }
 }
