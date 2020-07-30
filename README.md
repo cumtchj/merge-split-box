@@ -18,7 +18,7 @@ const msb = new MSB("#box",2 ,6 );
 let res = msb.getRes();
 ```
 
-###### 1)方法二
+###### 2)方法二
 ```ecmascript 6
 import MSB from "merge-split-box"
 
@@ -57,7 +57,7 @@ let onChange=(res)=>{
 可选，基础单元格的样式，目前只支持width, 默认每个单元格的宽度为100px。
 例：
     {
-        width：100
+        width："100px"
     }
 ```
 
