@@ -102,7 +102,7 @@ class Grid {
       row: item.row,
       col: item.col,
     }))
-    console.log(this.res)
+    // console.log(this.res)
     this._onChange && this._onChange(this.res)
   }
 
@@ -198,7 +198,7 @@ class Grid {
       let pos = this.getPos(e)
       this._startX = pos[0];
       this._startY = pos[1];
-      console.log("start===", this._startX, this._startY)
+      // console.log("start===", this._startX, this._startY)
       this._cover = new Cover(this._startX, this._startY, this._container)
       this._container.append(this._cover.cover)
     })
@@ -255,7 +255,7 @@ class Grid {
             this._endY = (this._unitWidthNum * this._row)
           }
         }
-        console.log('end==', this._endX, this._endY)
+        // console.log('end==', this._endX, this._endY)
         this.destroyCover();
         if (Math.abs(this._endX - this._startX) > 0 || Math.abs(this._endY - this._startY)) {
           this.rebuild();
