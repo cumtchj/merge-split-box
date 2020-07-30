@@ -5,10 +5,11 @@ import Cover from "../cover/index"
 import styles from '../style/index'
 
 class Grid {
-  constructor(container, row, col, style) {
+  constructor(container, row, col, fn, style) {
     this._container = container;
     this._row = row;
     this._col = col;
+    this._onChange = fn
     this._style = style
     this._array = utils.makeArray(this._row, this._col)
     this._unitWidth = (this._style && this._style.width) || "100px"
@@ -102,6 +103,7 @@ class Grid {
       col: item.col,
     }))
     console.log(this.res)
+    this._onChange && this._onChange(this.res)
   }
 
   checkOverlap(area) {

@@ -1,7 +1,7 @@
 import Grid from './grid/index'
 
 class MergeSplitBox {
-  constructor(container, row, col, style) {
+  constructor(container, row, col, fn, style) {
     this._container =
       typeof container === "string" ?
         container.startsWith("#") ?
@@ -10,7 +10,7 @@ class MergeSplitBox {
             document.querySelector(container)[0] :
             document.getElementById(container) :
         container
-    this.grid = new Grid(this._container, row, col, style)
+    this.grid = new Grid(this._container, row, col, fn, style)
     this.grid.build()
     this.grid.merge()
   }
